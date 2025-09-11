@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 # Set the path to the file you'd like to load
 MINUTE_DATA = "eurusd_minute.csv"
 HOUR_DATA = "eurusd_hour.csv"
-MAX_ROWS = 10000
+MAX_ROWS = 20000
 file_path = HOUR_DATA
 # Load the latest version
 df = kagglehub.load_dataset(
@@ -28,6 +28,15 @@ trainRows = np.floor(rows * 0.8)
 testRows = np.ceil(rows * 0.2)
 print(f"80/20 split: {int(trainRows)} / {int(testRows)} ")
 
-fig, ax = plt.subplots(1, 1)
-ax.table(cellText=df.values, colLabels=df.keys(), loc='center')
-plt.show()
+""" predictors analysis
+    - Date: date
+    - Time: Hour in which the price was measured
+    - BO: Opening bid price
+    - BH: Highest bid price in that one hour period
+    - BL: Lowest bid price in that one hour period
+    - BC: Closing bid price
+    - BCh: Change between open and close price
+    - AO: Opening ask price
+    - AH: Highest ask price in that one hour period
+    - AL: Lowest ask price in that one hour period
+"""
